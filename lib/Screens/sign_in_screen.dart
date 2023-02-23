@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:Connector/Screens/sign_in_button.dart';
-import 'package:Connector/Screens/my_text_field.dart';
-import 'package:Connector/Screens/sign_up_screen.dart';
+import 'package:connector/Screens/sign_in_button.dart';
+import 'package:connector/Screens/my_text_field.dart';
+import 'package:connector/Screens/sign_up_screen.dart';
 
 
 class SignInScreen extends StatelessWidget {
