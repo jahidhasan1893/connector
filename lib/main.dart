@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_project/Screens/sign_in_screen.dart';
-import 'package:flutter_project/Screens/splash_screen.dart';
+import 'package:connector/Screens/sign_in_screen.dart';
+import 'package:connector/Screens/splash_screen.dart';
 
 void main() {
   runApp(const MyApp());
