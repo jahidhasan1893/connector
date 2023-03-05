@@ -12,7 +12,9 @@ class SignInScreen extends StatelessWidget {
   final passwordController = TextEditingController();
 
 
-  void signUserIn() {}
+  void signUserIn() {
+
+  }
 
   @override
   Widget build(BuildContext context) {

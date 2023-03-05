@@ -32,12 +32,12 @@ class _HomeScreenState extends State<HomeScreen> {
         },
         items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
+            icon: Icon(Icons.message),
+            label: 'Messsges',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.dashboard),
-            label: 'Dashboard',
+            label: 'Stories',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),

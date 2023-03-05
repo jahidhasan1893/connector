@@ -15,7 +15,9 @@ class SignUpScreen extends StatelessWidget {
   final confirmPasswordController=TextEditingController();
 
 
-  void signUserIn() {}
+  void signUserUp() {
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -87,7 +89,7 @@ class SignUpScreen extends StatelessWidget {
 
 
               SignUpButton(
-                onTap: signUserIn,
+                onTap: signUserUp,
               ),
 
               const SizedBox(height: 30),
