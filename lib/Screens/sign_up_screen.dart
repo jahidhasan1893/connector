@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:connector/Screens/sign_in_button.dart';
 import 'package:connector/Screens/my_text_field.dart';
@@ -15,7 +16,11 @@ class SignUpScreen extends StatelessWidget {
   final confirmPasswordController=TextEditingController();
 
 
-  void signUserIn() {}
+  Future<void> signUserUp() async {
+    UserCredential userCredential=await FirebaseAuth.instance.createUserWithEmailAndPassword(email: emailController.text.trim(),
+        password: passwordController.text.trim());
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -87,7 +92,7 @@ class SignUpScreen extends StatelessWidget {
 
 
               SignUpButton(
-                onTap: signUserIn,
+                onTap: signUserUp,
               ),
 
               const SizedBox(height: 30),

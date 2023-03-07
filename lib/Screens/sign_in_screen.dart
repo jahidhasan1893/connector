@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:connector/Screens/sign_in_button.dart';
 import 'package:connector/Screens/my_text_field.dart';
@@ -8,11 +9,16 @@ class SignInScreen extends StatelessWidget {
   SignInScreen({super.key});
 
 
-  final usernameController = TextEditingController();
+  final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
 
-  void signUserIn() {}
+  void signUserIn() async{
+    User? user=FirebaseAuth.instance.currentUser;
+    //if(user!=null) return HomeS
+    await FirebaseAuth.instance.signInWithEmailAndPassword(email: emailController.text.trim(),
+        password: passwordController.text.trim());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +42,7 @@ class SignInScreen extends StatelessWidget {
 
 
               MyTextField(
-                controller: usernameController,
+                controller: emailController,
                 hintText: 'Username or Email',
                 obscureText: false,
               ),
