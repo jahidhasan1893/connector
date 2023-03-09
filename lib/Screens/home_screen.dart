@@ -1,6 +1,8 @@
 import 'package:connector/Screens/search_screen.dart';
 import 'package:flutter/material.dart';
 
+import '../Pages/profile_page.dart';
+
 
 
 class HomeScreen extends StatefulWidget {
@@ -10,6 +12,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int _currentIndex = 0;
+  bool is_message_page=true;
 
   final List<Widget> _pages = [    PageOne(),    PageTwo(),    PageThree(),  ];
 
@@ -28,6 +31,8 @@ class _HomeScreenState extends State<HomeScreen> {
         onTap: (int index) {
           setState(() {
             _currentIndex = index;
+            if(_currentIndex!=0) is_message_page=false;
+            else is_message_page=true;
           });
         },
         items: [
@@ -45,7 +50,9 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton:Visibility(
+        visible: is_message_page,
+        child: FloatingActionButton(
         onPressed: () {
           Navigator.pushReplacement<void, void>(
             context,
@@ -57,6 +64,8 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Icon(Icons.search),
         backgroundColor: Colors.blue,
       ),
+
+      )
       //floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
@@ -83,8 +92,8 @@ class PageTwo extends StatelessWidget {
 class PageThree extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text('Profile Page'),
-    );
+    return ProfilePage();
   }
 }
+
+

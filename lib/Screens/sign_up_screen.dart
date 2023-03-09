@@ -1,26 +1,49 @@
+import 'package:connector/Screens/sign_in_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:connector/Screens/sign_in_button.dart';
 import 'package:connector/Screens/my_text_field.dart';
-import 'package:connector/Screens/sign_in_screen.dart';
+import 'package:connector/Screens/sign_in_screen.dart' as globe;
 import 'package:connector/Screens/sign_up_button.dart';
 
 
-class SignUpScreen extends StatelessWidget {
+import 'home_screen.dart';
+
+
+class SignUpScreen extends StatefulWidget {
   SignUpScreen({super.key});
 
+  @override
+  State<SignUpScreen> createState() => _SignUpScreenState();
+}
 
+class _SignUpScreenState extends State<SignUpScreen> {
   final usernameController = TextEditingController();
-  final emailController=TextEditingController();
-  final passwordController = TextEditingController();
-  final confirmPasswordController=TextEditingController();
 
+  final emailController=TextEditingController();
+
+  final passwordController = TextEditingController();
+
+  final confirmPasswordController=TextEditingController();
 
   Future<void> signUserUp() async {
     UserCredential userCredential=await FirebaseAuth.instance.createUserWithEmailAndPassword(email: emailController.text.trim(),
         password: passwordController.text.trim());
+    FirebaseAuth.instance
+        .authStateChanges()
+        .listen((User? user) async{
+      if (user == null) {
+        print('User is currently signed out!');
+      } else {
+        Navigator.pushReplacement<void, void>(
+          context,
+          MaterialPageRoute<void>(
+            builder: (BuildContext context) =>HomeScreen(),
+          ),
+        );
+      }
+    });
   }
-
 
   @override
   Widget build(BuildContext context) {
