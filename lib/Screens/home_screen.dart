@@ -18,6 +18,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       backgroundColor: Colors.grey[300],
       appBar: AppBar(
@@ -84,7 +85,9 @@ class PageTwo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text('Dashboard Page'),
+      child: Text('No stories available',style: TextStyle(
+        fontSize: 15,
+      )),
     );
   }
 }

@@ -31,7 +31,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         password: passwordController.text.trim());
     User? user =FirebaseAuth.instance.currentUser;
     user?.updateDisplayName(usernameController.text.trim());
-    user?.updatePhotoURL('https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.sony.co.uk%2Fpresscentre%2Fcontacts&psig=AOvVaw12QSig7O_cvnNRLQ4qQ4VL&ust=1678607500153000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCNihlr2y0_0CFQAAAAAdAAAAABAI');
+    user?.updatePhotoURL('gs://connector-71f47.appspot.com/contact-dummy_landscape_964x656.jpg');
     FirebaseAuth.instance
         .authStateChanges()
         .listen((User? user) async{

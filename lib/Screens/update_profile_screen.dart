@@ -35,12 +35,7 @@ class UpdateProfileScreen extends StatelessWidget {
       if (passwordController.text.toString() != null) {
         user?.updatePassword(passwordController.text.toString());
       }
-      Navigator.pushReplacement<void, void>(
-        context,
-        MaterialPageRoute<void>(
-          builder: (BuildContext context) => HomeScreen(),
-        ),
-      );
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("User profile updated")));
     }
     return Scaffold(
         resizeToAvoidBottomInset: false,
