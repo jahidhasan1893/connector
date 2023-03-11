@@ -29,6 +29,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
   Future<void> signUserUp() async {
     UserCredential userCredential=await FirebaseAuth.instance.createUserWithEmailAndPassword(email: emailController.text.trim(),
         password: passwordController.text.trim());
+    User? user =FirebaseAuth.instance.currentUser;
+    user?.updateDisplayName(usernameController.text.trim());
+    user?.updatePhotoURL('https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.sony.co.uk%2Fpresscentre%2Fcontacts&psig=AOvVaw12QSig7O_cvnNRLQ4qQ4VL&ust=1678607500153000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCNihlr2y0_0CFQAAAAAdAAAAABAI');
     FirebaseAuth.instance
         .authStateChanges()
         .listen((User? user) async{
