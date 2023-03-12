@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:connector/Screens/sign_in_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -29,9 +30,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
   Future<void> signUserUp() async {
     UserCredential userCredential=await FirebaseAuth.instance.createUserWithEmailAndPassword(email: emailController.text.trim(),
         password: passwordController.text.trim());
+
     User? user =FirebaseAuth.instance.currentUser;
     user?.updateDisplayName(usernameController.text.trim());
-    user?.updatePhotoURL('gs://connector-71f47.appspot.com/contact-dummy_landscape_964x656.jpg');
+    user?.updatePhotoURL('https://firebasestorage.googleapis.com/v0/b/connector-71f47.appspot.com/o/contact-dummy_landscape_964x656.jpg?alt=media&token=0559da6a-1aea-4858-a8a1-281f4b286da6');
+    await FirebaseFirestore.instance.collection('users').doc(userCredential.user?.uid).set(
+      {
+        'email':emailController.text,
+        'username':usernameController.text,
+        'photourl':'https://firebasestorage.googleapis.com/v0/b/connector-71f47.appspot.com/o/contact-dummy_landscape_964x656.jpg?alt=media&token=0559da6a-1aea-4858-a8a1-281f4b286da6',
+      }).then((value) => print("User data saved"))
+          .catchError((error) => print("Failed to save user data: $error"));
+
     FirebaseAuth.instance
         .authStateChanges()
         .listen((User? user) async{

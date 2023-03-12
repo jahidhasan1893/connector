@@ -35,7 +35,7 @@ class _ProfilePageState extends State<ProfilePage> {
               //const SizedBox(height: 60),
               CircleAvatar(
                 radius: 60.0,
-                backgroundImage: AssetImage('${user?.photoURL}'),
+                backgroundImage: NetworkImage('${user?.photoURL}'),
               ),
               const SizedBox(height: 20),
               Text('${user?.displayName}',style: TextStyle(
