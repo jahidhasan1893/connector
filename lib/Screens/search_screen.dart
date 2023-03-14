@@ -1,6 +1,9 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+import '../Pages/chat_page.dart';
 import 'home_screen.dart';
 
 
@@ -27,7 +30,7 @@ class _SearchScreenState extends State<SearchScreen> {
         .limit(1)
         .get();
 
-    if (result.docs.length == 1) {
+    if (result.docs.length == 1 ) {
       final DocumentSnapshot<Map<String, dynamic>> userDoc = result.docs.first;
       final userData = userDoc.data();
       userFound=true;
@@ -94,8 +97,10 @@ class _SearchScreenState extends State<SearchScreen> {
               ),
               IconButton(onPressed: (){
                 onSearch();
-              }, icon: Icon(Icons.search))
+              }, icon: Icon(Icons.search)),
+              const SizedBox(width: 10),
             ],
+
           ),
           if(searchResult.length > 0)
             Expanded(child: ListView.builder(
@@ -103,9 +108,11 @@ class _SearchScreenState extends State<SearchScreen> {
                 shrinkWrap: true,
                 itemBuilder: (context,index){
                   return ListTile(
-                    leading: CircleAvatar(
-                      radius: 20.0,
-                      backgroundImage: NetworkImage(searchResult[index]['photourl']),
+                    leading: CachedNetworkImage(
+                      imageUrl:'${FirebaseAuth.instance.currentUser?.photoURL}',
+                      placeholder: (conteext,url)=>CircularProgressIndicator(),
+                      errorWidget: (context,url,error)=>Icon(Icons.error,),
+                      height: 40,
                     ),
                     title: Text(searchResult[index]['username']),
                     subtitle: Text(searchResult[index]['email']),
@@ -113,11 +120,11 @@ class _SearchScreenState extends State<SearchScreen> {
                       setState(() {
                         searchController.text = "";
                       });
-                      /*Navigator.push(context, MaterialPageRoute(builder: (context)=>ChatScreen(
-                          currentUser: widget.user,
-                          friendId: searchResult[index]['uid'],
-                          friendName: searchResult[index]['name'],
-                          friendImage: searchResult[index]['image'])));*/
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>ChatPage(
+                          currentUserId: '${FirebaseAuth.instance.currentUser?.uid}'??'',
+                          friendId: searchResult[index]['uid']??'',
+                          friendName: searchResult[index]['username']??'',
+                          friendImage: searchResult[index]['photurl']??'')));
                     }, icon: Icon(Icons.message)),
                   );
                 }))

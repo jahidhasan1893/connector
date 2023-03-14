@@ -1,6 +1,7 @@
 import 'package:connector/Screens/search_screen.dart';
 import 'package:flutter/material.dart';
 
+import '../Pages/home_page.dart';
 import '../Pages/profile_page.dart';
 
 
@@ -75,9 +76,7 @@ class _HomeScreenState extends State<HomeScreen> {
 class PageOne extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text('Home Page'),
-    );
+    return HomePage();
   }
 }
 

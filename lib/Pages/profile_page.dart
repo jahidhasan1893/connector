@@ -25,6 +25,7 @@ class _ProfilePageState extends State<ProfilePage> {
     final passwordController2 = TextEditingController();
     final passwordController3 = TextEditingController();
     return Scaffold(
+        backgroundColor: Colors.grey[300],
       body:SafeArea(
         child: Center(
           child: Column(
@@ -36,6 +37,7 @@ class _ProfilePageState extends State<ProfilePage> {
               CircleAvatar(
                 radius: 60.0,
                 backgroundImage: NetworkImage('${user?.photoURL}'),
+
               ),
               const SizedBox(height: 20),
               Text('${user?.displayName}',style: TextStyle(

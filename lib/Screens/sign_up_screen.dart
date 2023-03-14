@@ -36,6 +36,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     user?.updatePhotoURL('https://firebasestorage.googleapis.com/v0/b/connector-71f47.appspot.com/o/contact-dummy_landscape_964x656.jpg?alt=media&token=0559da6a-1aea-4858-a8a1-281f4b286da6');
     await FirebaseFirestore.instance.collection('users').doc(userCredential.user?.uid).set(
       {
+        'uid':userCredential.user?.uid,
         'email':emailController.text,
         'username':usernameController.text,
         'photourl':'https://firebasestorage.googleapis.com/v0/b/connector-71f47.appspot.com/o/contact-dummy_landscape_964x656.jpg?alt=media&token=0559da6a-1aea-4858-a8a1-281f4b286da6',

@@ -107,7 +107,8 @@ class UpdateProfileScreen extends StatelessWidget {
     PickedFile? image;
     User? user = FirebaseAuth.instance.currentUser;
     //Check Permissions
-    await Permission.photos.request();
+    var check=await Permission.photos.request();
+    print(check);
 
     var permissionStatus = await Permission.photos.status;
 
