@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:connector/Screens/my_text_field.dart';
 import 'package:connector/Screens/sign_out_button.dart';
 import 'package:connector/Widgets/update_profile_button.dart';
@@ -34,10 +35,19 @@ class _ProfilePageState extends State<ProfilePage> {
             children: [
 
               //const SizedBox(height: 60),
-              CircleAvatar(
-                radius: 60.0,
-                backgroundImage: NetworkImage('${user?.photoURL}'),
-
+          CachedNetworkImage(
+                imageUrl:'${user?.photoURL}'??'',
+                placeholder: (conteext,url)=>CircularProgressIndicator(),
+                errorWidget: (context,url,error)=>Icon(Icons.error,),
+                imageBuilder: (context, imageProvider) => Container(
+                  width: 130.0,
+                  height: 130.0,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    image: DecorationImage(
+                        image: imageProvider, fit: BoxFit.cover),
+                  ),
+                ),
               ),
               const SizedBox(height: 20),
               Text('${user?.displayName}',style: TextStyle(
